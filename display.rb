@@ -5,12 +5,14 @@ require_relative "board.rb"
 class Display
   include Cursorable
 
-  attr_reader :cursor_pos
+  attr_reader :cursor_pos, :player1, :board
 
   def initialize(board)
     @board = board
     @cursor_pos = [3,3]
   end
+
+
 
   def build_grid
     @board.rows.map.with_index do |row, i|
@@ -36,10 +38,30 @@ class Display
     { background: bg, color: :black }
   end
 
+  def move_was_made
+    current_board = board
+    copy_of_board = board.dup
+    if current_board = copy_of_board
+      return false
+    else
+      return true
+    end
+  end
+
   def render
     system("clear")
-    puts "Fill the grid!"
+    puts "Let's play chess"
     puts "Arrow keys, WASD, or vim to move, space or enter to confirm."
+
+
     build_grid.each { |row| puts row.join } #map? #each? can we use match?
+    # p game.move_was_made
+
+    # if player1==true
+    #   p "player1 turn"
+    # else
+    #   p "player2 turn"
+    # end
+    # switch_players if move_was_made
   end
 end
