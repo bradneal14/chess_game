@@ -1,9 +1,10 @@
 require "colorize"
 require_relative "cursorable"
-
+require_relative "board.rb"
 
 class Display
   include Cursorable
+
 
   def initialize(board)
     @board = board
@@ -38,6 +39,9 @@ class Display
     system("clear")
     puts "Fill the grid!"
     puts "Arrow keys, WASD, or vim to move, space or enter to confirm."
-    build_grid.each { |row| puts row.join }
+    build_grid.each do |row|
+      puts "here"
+      puts row.join
+    end
   end
 end
