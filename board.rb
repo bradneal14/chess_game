@@ -1,11 +1,14 @@
 require_relative 'empty_piece.rb'
 require_relative 'display.rb'
 require_relative 'cursorable.rb'
+require_relative 'player.rb'
 
 class Board
 
   def initialize
     @grid = Array.new(8) {Array.new(8) { EmptyPiece.new } }
+    @grid[0][0] = XPiece.new
+    @in_hand = []
   end
 
   def [](pos)
@@ -20,12 +23,36 @@ class Board
 
   def move(start, end_pos)
     self[end_pos] = self[start]
-    self[start] = nil
+    self[start] = EmptyPiece.new
   end
 
-  def mark(pos)
+  def mark(pos) #[0,1]
     x, y = pos
     @grid[x][y] = XPiece.new
+  end
+
+  def pick_up(pos) #pos = [0,0]
+    x, y  = pos
+
+    if @grid[x][y].is_a? (XPiece)
+      @in_hand << @grid[x][y]
+    else
+      p "cannot pickup empty piece"
+
+    end
+
+  end
+
+  def put_down(pos)
+    x, y = pos
+
+    if @grid[x][y].is_a?(EmptyPiece) && @in_hand.length > 0
+      @grid[x][y] = @in_hand.shift
+    else
+      p 'please put on empty grid'
+
+    end
+
   end
 
 

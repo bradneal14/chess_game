@@ -6,6 +6,9 @@ require_relative 'cursorable.rb'
 
 class Game
 
+  attr_accessor :in_hand
+  attr_reader :board
+
   def initialize
     @board = Board.new
     @player = Player.new(@board)
@@ -13,11 +16,17 @@ class Game
 
 
   def run
+    puts "Mark all the spaces on the board!"
     puts "WASD or arrow keys to move the cursor, enter or space to confirm."
     until false
       pos = @player.move
-      @board.mark(pos)
+      new_pos = @player.move
+      @board.move(pos, new_pos)
     end
+    puts "Hooray, the board is filled!"
   end
+
+
+
   Game.new.run
 end

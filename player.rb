@@ -1,6 +1,12 @@
 require_relative 'display.rb'
+# require_relative 'game.rb'
+
+
 
 class Player
+
+  attr_accessor :in_hand
+
   def initialize(board)
     @display = Display.new(board)
   end
