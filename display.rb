@@ -5,6 +5,7 @@ require_relative "board.rb"
 class Display
   include Cursorable
 
+  attr_reader :cursor_pos
 
   def initialize(board)
     @board = board
@@ -26,22 +27,19 @@ class Display
 
   def colors_for(i, j)
     if [i, j] == @cursor_pos
-      bg = :light_red
+      bg = :light_yellow
     elsif (i + j).odd?
       bg = :light_blue
     else
-      bg = :blue
+      bg = :white
     end
-    { background: bg, color: :white }
+    { background: bg, color: :red }
   end
 
   def render
     system("clear")
     puts "Fill the grid!"
     puts "Arrow keys, WASD, or vim to move, space or enter to confirm."
-    build_grid.each do |row|
-      puts "here"
-      puts row.join
-    end
+    build_grid.each { |row| puts row.join } #map? #each? can we use match?
   end
 end

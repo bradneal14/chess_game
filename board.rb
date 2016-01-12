@@ -23,6 +23,26 @@ class Board
     self[start] = nil
   end
 
+  def mark(pos)
+    x, y = pos
+    @grid[x][y] = XPiece.new
+  end
+
+
+  # def create_display
+  #   display = Display.new(@board)
+  #   display.build_grid
+  # end
+
+  def in_bounds?(pos)
+    pos.all? { |x| x.between?(0, 7) }
+  end
+
+  def rows
+    @grid
+  end
+
+
   # def populate
   #   for i in (0..@grid.length-1)
   #     for j in (0..@grid.length-1)

@@ -4,10 +4,24 @@ class EmptyPiece
 
   def initialize
     @value = "   "
-    # Board.populate
   end
 
   def inspect
+    @value
+  end
+
+  def to_s
+    "   "
+  end
+
+end
+
+class XPiece
+  def initialize
+    @value = " x "
+  end
+
+  def to_s
     @value
   end
 
