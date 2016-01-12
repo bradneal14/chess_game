@@ -6,8 +6,9 @@ require_relative 'cursorable.rb'
 
 class Game
 
-  attr_accessor :in_hand
+
   attr_reader :board
+
 
   def initialize
     @board = Board.new

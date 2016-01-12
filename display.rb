@@ -9,7 +9,7 @@ class Display
 
   def initialize(board)
     @board = board
-    @cursor_pos = [0, 0]
+    @cursor_pos = [3,3]
   end
 
   def build_grid
@@ -33,7 +33,7 @@ class Display
     else
       bg = :white
     end
-    { background: bg, color: :red }
+    { background: bg, color: :black }
   end
 
   def render

@@ -2,13 +2,14 @@ require_relative 'empty_piece.rb'
 require_relative 'display.rb'
 require_relative 'cursorable.rb'
 require_relative 'player.rb'
+require_relative 'piece.rb'
 
 class Board
 
   def initialize
     @grid = Array.new(8) {Array.new(8) { EmptyPiece.new } }
-    @grid[0][0] = XPiece.new
-    @in_hand = []
+    self.populate
+
   end
 
   def [](pos)
@@ -31,29 +32,42 @@ class Board
     @grid[x][y] = XPiece.new
   end
 
-  def pick_up(pos) #pos = [0,0]
-    x, y  = pos
 
-    if @grid[x][y].is_a? (XPiece)
-      @in_hand << @grid[x][y]
-    else
-      p "cannot pickup empty piece"
 
-    end
-
+def populate
+  #PAWNS
+  for i in (0..7)
+    @grid[1][i] = Pawn.new(" \u2659 ".chomp)
+    @grid[6][i] = Pawn.new(" \u265F ".chomp)
   end
 
-  def put_down(pos)
-    x, y = pos
+  #ROOKS
+  @grid[7][7] = Rook.new(" \u265C ".chomp) #black
+  @grid[7][0] = Rook.new(" \u265C ".chomp)
+  @grid[0][7] = Rook.new(" \u2656 ".chomp) #white
+  @grid[0][0] = Rook.new(" \u2656 ".chomp)
 
-    if @grid[x][y].is_a?(EmptyPiece) && @in_hand.length > 0
-      @grid[x][y] = @in_hand.shift
-    else
-      p 'please put on empty grid'
+  #Knight
+  @grid[7][1] = Knight.new(" \u265E ".chomp)
+  @grid[7][6] = Knight.new(" \u265E ".chomp)
+  @grid[0][1] = Knight.new(" \u2658 ".chomp)
+  @grid[0][6] = Knight.new(" \u2658 ".chomp)
 
-    end
+  #Bishop
+  @grid[7][2] = Bishop.new(" \u265D ".chomp)
+  @grid[7][5] = Bishop.new(" \u265D ".chomp)
+  @grid[0][2] = Bishop.new(" \u2657 ".chomp)
+  @grid[0][5] = Bishop.new(" \u2657 ".chomp)
 
-  end
+  #Queen
+  @grid[7][3] = Queen.new(" \u265B ".chomp)
+  @grid[0][4] = Queen.new(" \u2655 ".chomp)
+
+  #King
+  @grid[7][4] = King.new(" \u265A ".chomp)
+  @grid[0][3] = King.new(" \u2654 ".chomp)
+
+end
 
 
   # def create_display
