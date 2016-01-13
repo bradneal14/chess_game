@@ -34,6 +34,7 @@ class Game
       pos = current_player.move
       new_pos = current_player.move
       @board.move(pos, new_pos)
+      #check valid
       if pos != new_pos
         switch_players
       end
