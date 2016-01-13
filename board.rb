@@ -6,6 +6,8 @@ require_relative 'piece.rb'
 
 class Board
 
+  attr_reader :grid
+
   def initialize
     @grid = Array.new(8) {Array.new(8) { EmptyPiece.new } }
     self.populate
@@ -32,35 +34,35 @@ class Board
 def populate
   #PAWNS
   for i in (0..7)
-    @grid[1][i] = Pawn.new(" \u2659 ".chomp)
-    @grid[6][i] = Pawn.new(" \u265F ".chomp)
+    @grid[1][i] = Pawn.new(" \u2659 ", "Player1")
+    @grid[6][i] = Pawn.new(" \u265F ", "Player2")
   end
 
   #ROOKS
-  @grid[7][7] = Rook.new(" \u265C ".chomp) #black
-  @grid[7][0] = Rook.new(" \u265C ".chomp)
-  @grid[0][7] = Rook.new(" \u2656 ".chomp) #white
-  @grid[0][0] = Rook.new(" \u2656 ".chomp)
+  @grid[7][7] = Rook.new(" \u265C ".chomp, "Player2", self) #black
+  @grid[7][0] = Rook.new(" \u265C ".chomp, "Player2", self)
+  @grid[0][7] = Rook.new(" \u2656 ".chomp, "Player1", self) #white
+  @grid[0][0] = Rook.new(" \u2656 ".chomp, "Player1", self)
 
   #Knight
-  @grid[7][1] = Knight.new(" \u265E ".chomp)
-  @grid[7][6] = Knight.new(" \u265E ".chomp)
-  @grid[0][1] = Knight.new(" \u2658 ".chomp)
-  @grid[0][6] = Knight.new(" \u2658 ".chomp)
+  @grid[7][1] = Knight.new(" \u265E ".chomp, "Player2")
+  @grid[7][6] = Knight.new(" \u265E ".chomp, "Player2")
+  @grid[0][1] = Knight.new(" \u2658 ".chomp, "Player1")
+  @grid[0][6] = Knight.new(" \u2658 ".chomp, "Player1")
 
   #Bishop
-  @grid[7][2] = Bishop.new(" \u265D ".chomp)
-  @grid[7][5] = Bishop.new(" \u265D ".chomp)
-  @grid[0][2] = Bishop.new(" \u2657 ".chomp)
-  @grid[0][5] = Bishop.new(" \u2657 ".chomp)
+  @grid[7][2] = Bishop.new(" \u265D ".chomp, "Player2")
+  @grid[7][5] = Bishop.new(" \u265D ".chomp, "Player2")
+  @grid[0][2] = Bishop.new(" \u2657 ".chomp, "Player1")
+  @grid[0][5] = Bishop.new(" \u2657 ".chomp, "Player1")
 
   #Queen
-  @grid[7][3] = Queen.new(" \u265B ".chomp)
-  @grid[0][4] = Queen.new(" \u2655 ".chomp)
+  @grid[7][3] = Queen.new(" \u265B ".chomp, "Player2")
+  @grid[0][4] = Queen.new(" \u2655 ".chomp, "Player1")
 
   #King
-  @grid[7][4] = King.new(" \u265A ".chomp)
-  @grid[0][3] = King.new(" \u2654 ".chomp)
+  @grid[7][4] = King.new(" \u265A ".chomp, "Player2")
+  @grid[0][3] = King.new(" \u2654 ".chomp, "Player1")
 
 end
 

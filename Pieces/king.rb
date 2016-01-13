@@ -1,7 +1,10 @@
 class King
-def initialize(value)
-  @value = value
-end
+  attr_reader :id
+
+  def initialize(value, id)
+    @value = value
+    @id = id
+  end
 
 def to_s
   @value

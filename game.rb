@@ -33,16 +33,21 @@ class Game
     until false
       pos = current_player.move
       new_pos = current_player.move
-      @board.move(pos, new_pos)
-      #check valid
-      if pos != new_pos
+      if board[pos].id != current_player.name
+        p "wrong move"
+      elsif pos != new_pos && board[pos].id != 7
+        @board.move(pos, new_pos)
         switch_players
+      else
+        p "wrong move"
       end
+
     end
     puts "Hooray, the board is filled!"
   end
 
+end
 
-
+if __FILE__ == $0
   Game.new.run
 end

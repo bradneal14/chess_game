@@ -1,7 +1,6 @@
 require_relative 'display.rb'
 
 
-
 class Player
 
   attr_reader :name

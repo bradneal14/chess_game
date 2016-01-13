@@ -2,8 +2,11 @@ require_relative 'board.rb'
 
 class EmptyPiece
 
+  attr_reader :id
+
   def initialize
     @value = "   "
+    @id = 7
   end
 
   def inspect

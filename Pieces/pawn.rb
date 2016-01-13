@@ -1,19 +1,23 @@
 class Pawn
 
-  def initialize(value)
+  attr_reader :id
+
+  def initialize(value, id)
     @value = value
+    @id = id
   end
 
   def to_s
     @value
   end
 
+
   UP_PAWN_MOVES = [
     [1,0]
   ]
 
   UP_PAWN_KILL = [
-    [1,1]
+    [1,1],
     [1,-1]
   ]
 
@@ -26,7 +30,7 @@ class Pawn
   ]
 
   DOWN_PAWN_KILL = [
-    [-1,-1]
+    [-1,-1],
     [-1,1]
   ]
 

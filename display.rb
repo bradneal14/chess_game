@@ -6,11 +6,13 @@ class Display
   include Cursorable
 
   attr_reader :cursor_pos, :player1, :board, :game
+  attr_accessor :extra_text
 
   def initialize(board, game)
     @game = game
     @board = board
     @cursor_pos = [3,3]
+    @extra_text = nil
   end
 
 
@@ -57,6 +59,9 @@ class Display
 
     build_grid.each { |row| puts row.join }
     p game.current_player.name
+    # if !@extra_text.nil?
+    #   p extra_text
+    
      #map? #each? can we use match?
     # p game.move_was_made
 
