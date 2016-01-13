@@ -27,11 +27,6 @@ class Board
     self[start] = EmptyPiece.new
   end
 
-  def mark(pos) #[0,1]
-    x, y = pos
-    @grid[x][y] = XPiece.new
-  end
-
 
 
 def populate

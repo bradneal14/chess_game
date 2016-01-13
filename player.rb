@@ -4,12 +4,11 @@ require_relative 'display.rb'
 
 class Player
 
-  attr_reader :player1, :player2
+  attr_reader :name
 
-  def initialize(board)
-    @display = Display.new(board)
-    @player1 = true
-    @player2 = false
+  def initialize(display, name)
+    @name = name
+    @display = display
   end
 
   def move
@@ -20,16 +19,5 @@ class Player
     end
     result
   end
-
-  def switch_players
-    if @player1 == true
-      p "player1 turn"
-    else
-      p "player2 turn"
-    end
-    @player1, @player2 = @player2, @player1
-  end
-
-
 
 end

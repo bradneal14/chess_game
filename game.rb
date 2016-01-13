@@ -7,20 +7,23 @@ require_relative 'cursorable.rb'
 class Game
 
 
-  attr_reader :board, :move_was_made
+  attr_reader :board
 
 
   def initialize
     @board = Board.new
-    @player = Player.new(@board)
-    
-    @move_was_made = false
-    @player1 = true
-    @player2 = false
+    # @player = Player.new(@board)
+    @display = Display.new(@board, self)
+    # @move_was_made = false
+    @players = [Player.new(@display, "Player1"), Player.new(@display, "Player2")]
   end
 
   def switch_players
-    @player1, @player2 = @player2, @player1
+    @players.rotate!
+  end
+
+  def current_player
+    @players[0]
   end
 
 
@@ -28,16 +31,12 @@ class Game
     p "Mark all the spaces on the board!"
     p "WASD or arrow keys to move the cursor, enter or space to confirm."
     until false
-      old_board = board.dup
-      pos = @player.move
-      new_pos = @player.move
+      pos = current_player.move
+      new_pos = current_player.move
       @board.move(pos, new_pos)
-      if board == old_board
-        @move_was_made = false
-      else
-        @move_was_made = true
+      if pos != new_pos
+        switch_players
       end
-      # @player.switch_players
     end
     puts "Hooray, the board is filled!"
   end

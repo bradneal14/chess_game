@@ -5,9 +5,10 @@ require_relative "board.rb"
 class Display
   include Cursorable
 
-  attr_reader :cursor_pos, :player1, :board
+  attr_reader :cursor_pos, :player1, :board, :game
 
-  def initialize(board)
+  def initialize(board, game)
+    @game = game
     @board = board
     @cursor_pos = [3,3]
   end
@@ -38,15 +39,15 @@ class Display
     { background: bg, color: :black }
   end
 
-  def move_was_made
-    current_board = board
-    copy_of_board = board.dup
-    if current_board = copy_of_board
-      return false
-    else
-      return true
-    end
-  end
+  # def move_was_made
+  #   current_board = board
+  #   copy_of_board = board.dup
+  #   if current_board = copy_of_board
+  #     return false
+  #   else
+  #     return true
+  #   end
+  # end
 
   def render
     system("clear")
@@ -54,7 +55,9 @@ class Display
     puts "Arrow keys, WASD, or vim to move, space or enter to confirm."
 
 
-    build_grid.each { |row| puts row.join } #map? #each? can we use match?
+    build_grid.each { |row| puts row.join }
+    p game.current_player.name
+     #map? #each? can we use match?
     # p game.move_was_made
 
     # if player1==true
